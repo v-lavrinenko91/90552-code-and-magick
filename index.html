@@ -170,23 +170,23 @@
 </template>
 <script>
 	"use strict";
-
+	
 	var fireballSize = 22;
-	var getFireballSpeed = function fireballSpeed(left) {
+	var getFireballSpeed = function(left) {
 		return left ?  5 : 2;
 	}
 	var wizardSpeed = 3;
 	var wizardWidth = 70;
-	var getWizardWidth = function wizardWidth() { 
+	var getWizardHeight = function() { 
 		return wizardWidth * 1.337;
 	}
-
+	
 	function getWizardX(width) {
-		return width/2;
+		return width / 2 - wizardWidth / 2;
 	}
 
 	function getWizardY(height) {
-		return height*2/3;
+		return height * 1 / 3 - getWizardHeight();
 	}
 </script>
 <script src="js/game.js"></script>
