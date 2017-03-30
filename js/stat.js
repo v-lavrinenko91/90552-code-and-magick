@@ -25,7 +25,7 @@ window.renderStatistics = function (ctx, names, times) {
   ctx.font = '16px PT Mono';
   ctx.fillText('Ура вы победили!', 120, 40);
   ctx.fillText('Список результатов:', 120, 60);
-  ctx.textBaseline = 'top'; 
+  ctx.textBaseline = 'top';
   for (i = 0; i < times.length; i++) {
     var barX = barInitialX + ((barIndent + barWidth) * i);
     var	barY = barInitialY + (histogramHeight - times[i] * step);
