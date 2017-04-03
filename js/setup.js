@@ -23,10 +23,9 @@ function generateWizard() {
 }
 function createWizardsList(listLength) {
   var wizards = [];
-  for (var i = 0; i < listLength; i++)
-    {
-      wizards[i] = generateWizard();
-    }
+  for (var i = 0; i < listLength; i++) {
+    wizards[i] = generateWizard();
+  }
   return wizards;
 }
 function renderWizard(wizard) {
