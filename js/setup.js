@@ -1,12 +1,21 @@
 'use strict';
 
-var userDialog = document.querySelector('.setup');
-var similarListElement = userDialog.querySelector('.setup-similar-list');
+var setup = document.querySelector('.setup');
+var setupOpen = document.querySelector('.setup-open');
+var setupClose = setup.querySelector('.setup-close');
+var setupSaveBtn = setup.querySelector('.setup-submit');
+var userNameField = setup.querySelector('.setup-user-name');
+var similarListElement = setup.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
+var wizard = document.querySelector('#wizard');
+var wizardCoat = wizard.querySelector('#wizard-coat');
+var wizardEyes = wizard.querySelector('#wizard-eyes');
+var wizardFireball = document.querySelector('.setup-fireball');
 var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var WIZARD_COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var WIZARD_EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
+var WIZARD_FIREBALL_COLOR = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
 
 function getRandomMassElement(mass) {
   var randNumber = Math.floor(Math.random() * mass.length);
@@ -49,10 +58,75 @@ function addWizards() {
   similarListElement.appendChild(fragment);
 }
 
-function showWizardsSetup() {
-  userDialog.classList.remove('hidden');
-  userDialog.querySelector('.setup-similar').classList.remove('hidden');
+function openSetup() {
+  setup.classList.remove('hidden');
+  setup.querySelector('.setup-similar').classList.remove('hidden');
+  document.addEventListener('keydown', onSetupEscPress);
+  setupClose.addEventListener('click', closeSetup);
+  setupClose.addEventListener('keydown', onSetupCloseEnterPress);
+  setupSaveBtn.addEventListener('click', onSetupSaveBtnClick);
+  document.addEventListener('click', onSetupSaveBtnFocusEnterPress);
+  wizardCoat.removeEventListener('click', generateCoatColor('wizardCoat'));
+  wizardEyes.addEventListener('click', generateColor('wizardEyes'));
+  wizardFireball.addEventListener('click', generateColor('wizardFireball'));
+}
+
+function closeSetup() {
+  setup.classList.add('hidden');
+  document.removeEventListener('keydown', onSetupEscPress);
+  setupClose.removeEventListener('click', closeSetup);
+  setupClose.removeEventListener('keydown', onSetupCloseEnterPress);
+  setupSaveBtn.removeEventListener('click', onSetupSaveBtnClick);
+  document.removeEventListener('click', onSetupSaveBtnFocusEnterPress);
+  wizardCoat.removeEventListener('click', generateCoatColor('wizardCoat'));
+  wizardEyes.removeEventListener('click', generateColor('wizardEyes'));
+  wizardFireball.removeEventListener('click', generateColor('wizardFireball'));
+}
+
+function onSetupEscPress(evt) {
+  if (evt.keyCode === 27 && document.activeElement != userNameField) {
+    closeSetup();
+  }
+}
+
+function onSetupOpenEnterPress(evt) {
+  if (evt.keyCode === 13) {
+    openSetup();
+  }
+}
+
+function onSetupCloseEnterPress(evt) { 
+  if (evt.keyCode === 13) {
+    closeSetup();
+  }
+}
+
+function onSetupSaveBtnClick(evt) {
+  evt.preventDefault();
+  if (setup.querySelector('input').checkValidity()) {
+    closeSetup();
+  }
+}
+
+function onSetupSaveBtnFocusEnterPress(evt) {
+  if (evt.keyCode === 13 && document.activeElement == setupSaveBtn) {
+    closeSetup();
+  }
+}
+
+function generateColor(part) {
+  switch(part) {
+    case 'wizardCoat':
+      wizardCoat.style.fill = getRandomMassElement(WIZARD_COAT_COLOR);
+      break;
+    case 'wizardEyes':
+      wizardEyes.style.fill = getRandomMassElement(WIZARD_EYES_COLOR);
+      break;
+    case 'wizardFireball':
+      wizardFireball.style.fill = getRandomMassElement(WIZARD_FIREBALL_COLOR);
+  }
 }
 
 addWizards();
-showWizardsSetup();
+setupOpen.addEventListener('click', openSetup);
+setupOpen.addEventListener('keydown', onSetupOpenEnterPress);
