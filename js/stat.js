@@ -21,7 +21,7 @@ window.renderStatistics = function (ctx, names, times) {
     ctx.fillText(content, x, y);
   }
   function generateRandomBarColor() {
-    var	randomSaturation = Math.floor(Math.random() * 256);  // насыщенность от 0 до 255
+    var randomSaturation = Math.floor(Math.random() * 256);  // насыщенность от 0 до 255
     var	randomOpacity = (Math.random() * 0.8 + 0.2).toFixed(1);  // прозрачность от 0.2 до 1
     return 'rgba(0, 0, ' + randomSaturation + ', ' + randomOpacity + ')';
   }
