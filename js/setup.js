@@ -4,14 +4,13 @@ var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
 var setupSaveBtn = setup.querySelector('.setup-submit');
-var userNameField = setup.querySelector('.setup-user-name');
+var userNameField = setup.querySelector('input.setup-user-name');
 var similarListElement = setup.querySelector('.setup-similar-list');
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content;
 var wizard = document.querySelector('.wizard');
 var wizardCoat = wizard.querySelector('.wizard-coat');
 var wizardEyes = wizard.querySelector('.wizard-eyes');
 var wizardFireball = document.querySelector('.setup-fireball-wrap');
-var userNameField = setup.querySelector('input.setup-user-name');
 var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'Кристоф', 'Виктор', 'Юлия', 'Люпита', 'Вашингтон'];
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var WIZARD_COAT_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
@@ -42,11 +41,11 @@ function createWizardsList(listLength) {
   return wizards;
 }
 
-function renderWizard(wizard) {
+function renderWizard(Mywizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
-  wizardElement.querySelector('.setup-similar-label').textContent = wizard.name;
-  wizardElement.querySelector('.wizard-coat').style.fill = wizard.coatColor;
-  wizardElement.querySelector('.wizard-eyes').style.fill = wizard.eyesColor;
+  wizardElement.querySelector('.setup-similar-label').textContent = Mywizard.name;
+  wizardElement.querySelector('.wizard-coat').style.fill = Mywizard.coatColor;
+  wizardElement.querySelector('.wizard-eyes').style.fill = Mywizard.eyesColor;
   return wizardElement;
 }
 
@@ -85,7 +84,7 @@ function closeSetup() {
 }
 
 function onSetupEscPress(evt) {
-  if (evt.keyCode === 27 && document.activeElement != userNameField) {
+  if (evt.keyCode === 27 && document.activeElement !== userNameField) {
     closeSetup();
   }
 }
@@ -96,7 +95,7 @@ function onSetupOpenEnterPress(evt) {
   }
 }
 
-function onSetupCloseEnterPress(evt) { 
+function onSetupCloseEnterPress(evt) {
   if (evt.keyCode === 13) {
     closeSetup();
   }
@@ -110,7 +109,7 @@ function onSetupSaveBtnClick(evt) {
 }
 
 function onSetupSaveBtnFocusEnterPress(evt) {
-  if (evt.keyCode === 13 && document.activeElement == setupSaveBtn) {
+  if (evt.keyCode === 13 && document.activeElement === setupSaveBtn) {
     closeSetup();
   }
 }
