@@ -52,7 +52,6 @@ window.renderStatistics = (function () {
     drawStatistics();
   }
 
-  return function (ctx, names, times) {
-    renderStatistics(ctx, names, times);
-  };
+  return renderStatistics;
+
 })();

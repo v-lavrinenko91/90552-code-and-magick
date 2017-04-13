@@ -1,6 +1,6 @@
 'use strict';
 
-window.setup = (function () {
+(function () {
   var setup = document.querySelector('.setup');
   var setupOpen = document.querySelector('.setup-open');
   var setupClose = setup.querySelector('.setup-close');
@@ -42,11 +42,11 @@ window.setup = (function () {
     return wizards;
   }
 
-  function renderWizard(Mywizard) {
+  function renderWizard(mywizard) {
     var wizardElement = similarWizardTemplate.cloneNode(true);
-    wizardElement.querySelector('.setup-similar-label').textContent = Mywizard.name;
-    wizardElement.querySelector('.wizard-coat').style.fill = Mywizard.coatColor;
-    wizardElement.querySelector('.wizard-eyes').style.fill = Mywizard.eyesColor;
+    wizardElement.querySelector('.setup-similar-label').textContent = mywizard.name;
+    wizardElement.querySelector('.wizard-coat').style.fill = mywizard.coatColor;
+    wizardElement.querySelector('.wizard-eyes').style.fill = mywizard.eyesColor;
     return wizardElement;
   }
 
